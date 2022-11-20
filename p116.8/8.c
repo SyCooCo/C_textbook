@@ -1,22 +1,22 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
 
-int input(int n);                                                           //Ò»¸ö¼òÒ×ÑéÖ¤ÕıÕûÊıÊäÈëº¯Êı
-void check_I(char* string, int* y, int* m, int* d);                        //»ñÈ¡ÈÕÆÚ²¢ÑÏ¸ñ¼ìÑéÈÕÆÚÊäÈëµÄº¯Êı
-int leap_year(int y);                                                   //ÅĞ¶ÏÊÇ·ñÎªÈòÄêµÄº¯Êı
-int day_in_month(int y, int m);                                                    //ÓÃÓÚ»ñÈ¡ÔÂ·İÌìÊıµÄº¯Êı
-int check_date(int by, int bm, int bd, int ey, int em, int ed);                  //¼ì²éÆğÊ¼ÈÕÆÚÊÇ·ñĞ¡ÓÚÖÕÖ¹ÈÕÆÚµÄº¯Êı
-int calculate(int by, int bm, int bd, int ey, int em, int ed);                  //¼ÆËãÏà¸ôÌìÊıµÄº¯Êı
+int input(int n);                                                           //ä¸€ä¸ªç®€æ˜“éªŒè¯æ­£æ•´æ•°è¾“å…¥å‡½æ•°
+void check_I(char* string, int* y, int* m, int* d);                        //è·å–æ—¥æœŸå¹¶ä¸¥æ ¼æ£€éªŒæ—¥æœŸè¾“å…¥çš„å‡½æ•°
+int leap_year(int y);                                                   //åˆ¤æ–­æ˜¯å¦ä¸ºé—°å¹´çš„å‡½æ•°
+int day_in_month(int y, int m);                                                    //ç”¨äºè·å–æœˆä»½å¤©æ•°çš„å‡½æ•°
+int check_date(int by, int bm, int bd, int ey, int em, int ed);                  //æ£€æŸ¥èµ·å§‹æ—¥æœŸæ˜¯å¦å°äºç»ˆæ­¢æ—¥æœŸçš„å‡½æ•°
+int calculate(int by, int bm, int bd, int ey, int em, int ed);                  //è®¡ç®—ç›¸éš”å¤©æ•°çš„å‡½æ•°
 
 int main()
 {
-	int by, bm, bd, ey, em, ed, days;                             //ÆğÊ¼Äê£¬ÆğÊ¼ÔÂ£¬ÆğÊ¼ÈÕ£¬ÖÕÖ¹Äê£¬ÖÕÖ¹ÔÂ£¬ÖÕÖ¹ÈÕ£¬×ÜÌìÊı
-	by = bm = bd = ey = em = ed = days = 0;                                   //³õÊ¼»¯
+	int by, bm, bd, ey, em, ed, days;                             //èµ·å§‹å¹´ï¼Œèµ·å§‹æœˆï¼Œèµ·å§‹æ—¥ï¼Œç»ˆæ­¢å¹´ï¼Œç»ˆæ­¢æœˆï¼Œç»ˆæ­¢æ—¥ï¼Œæ€»å¤©æ•°
+	by = bm = bd = ey = em = ed = days = 0;
 	
 	check_I("Beginning", &by, &bm, &bd);
 	printf("\n");
 	check_I("Ending", &ey, &em, &ed);
-	while (check_date(by, bm, bd, ey, em, ed))                       //Ö±µ½ÆğÊ¼ÄêĞ¡ÓÚÖÕÖ¹ÄêÇ°£¬»ñÈ¡ÓÃ»§ÊäÈë
+	while (check_date(by, bm, bd, ey, em, ed))                       //ç›´åˆ°èµ·å§‹å¹´å°äºç»ˆæ­¢å¹´å‰ï¼Œè·å–ç”¨æˆ·è¾“å…¥
 	{
 		printf("\nThe beginning date is greater than or equal to the ending date\n");
 		printf("Please try again.\n\n");
@@ -26,13 +26,13 @@ int main()
 	}
 
 	days = calculate(by, bm, bd, ey, em, ed);
-	printf("\nThere %s %d %s from %04d.%d.%d to %04d.%d.%d.\n",                     //¹»ÑÏ½÷¾ÍÅĞ¶Ïµ¥¸´Êı£¡
+	printf("\nThere %s %d %s from %04d.%d.%d to %04d.%d.%d.\n",                     //å¤Ÿä¸¥è°¨å°±åˆ¤æ–­å•å¤æ•°ï¼
 		days == 1 ? "is" : "are", days, days == 1 ? "day" : "days", by, bm, bd, ey, em, ed);
 
 	return 0;
 }
 
-int input(int n)                                                          //Ò»¸ö¼òÒ×ÑéÖ¤ÕıÕûÊıÊäÈëº¯Êı
+int input(int n)                                                          //ä¸€ä¸ªç®€æ˜“éªŒè¯æ­£æ•´æ•°è¾“å…¥å‡½æ•°
 {
 	char ch[32];
 	while (scanf("%d", &n) != 1)
@@ -48,29 +48,29 @@ int input(int n)                                                          //Ò»¸ö
 	return n;
 }
 
-void check_I(char * string, int * y, int *  m, int * d)                  //»ñÈ¡ÈÕÆÚ²¢ÑÏ¸ñ¼ìÑéÈÕÆÚÊäÈë
+void check_I(char * string, int * y, int *  m, int * d)                  //è·å–æ—¥æœŸå¹¶ä¸¥æ ¼æ£€éªŒæ—¥æœŸè¾“å…¥
 {
-	printf("%s year: ", string);                                           //»ñÈ¡Äê·İ£¨Ö§³ÖÈÎÒâÕıÕûÊı×÷ÎªÄê·İ£¬Òò´Ë²»¼ìÑé£©
+	printf("%s year: ", string);                                           //è·å–å¹´ä»½ï¼ˆæ”¯æŒä»»æ„æ­£æ•´æ•°ä½œä¸ºå¹´ä»½ï¼Œå› æ­¤ä¸æ£€éªŒï¼‰
 	*y = input(*y);
 
-	printf("%s month: ", string);                                          //»ñÈ¡ÔÂ·İ
+	printf("%s month: ", string);                                          //è·å–æœˆä»½
 	*m = input(*m);
-	while (*m > 12 || *m < 1)                                             //¼ì²éÔÂ·İÊÇ·ñÓĞĞ§
+	while (*m > 12 || *m < 1)                                             //æ£€æŸ¥æœˆä»½æ˜¯å¦æœ‰æ•ˆ
 	{
 		printf("Please input a significant month: ");
 		*m = input(*m);
 	}
 
-	printf("%s day: ", string);                                        //»ñÈ¡ÈÕÆÚ
+	printf("%s day: ", string);                                        //è·å–æ—¥æœŸ
 	*d = input(*d);
-	while (*d > day_in_month(*y, *m))                                   //¼ì²éÈÕÆÚÊÇ·ñÓĞĞ§
+	while (*d > day_in_month(*y, *m))                                   //æ£€æŸ¥æ—¥æœŸæ˜¯å¦æœ‰æ•ˆ
 	{
 		printf("Please input a significant day: ");
 		*d = input(*d);
 	}
 }
 
-int leap_year(int y)                                                   //ÅĞ¶ÏÊÇ·ñÎªÈòÄê,³ÉÁ¢Ê±·µ»Ø1
+int leap_year(int y)                                                   //åˆ¤æ–­æ˜¯å¦ä¸ºé—°å¹´,æˆç«‹æ—¶è¿”å›1
 {
 	int i;
 	if (!(y % 400) || (!(y % 4) && (y % 100)))
@@ -80,7 +80,7 @@ int leap_year(int y)                                                   //ÅĞ¶ÏÊÇ·
 	return i;
 }
 
-int day_in_month(int y, int m)                                                    //ÓÃÓÚ»ñÈ¡ÔÂ·İÌìÊıµÄº¯Êı
+int day_in_month(int y, int m)                                                    //ç”¨äºè·å–æœˆä»½å¤©æ•°çš„å‡½æ•°
 {
 	int d;
 	if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
@@ -97,7 +97,7 @@ int day_in_month(int y, int m)                                                  
 	return d;
 }
 
-int check_date(int by, int bm, int bd, int ey, int em, int ed)              //¼ì²éÆğÊ¼ÈÕÆÚÊÇ·ñĞ¡ÓÚÖÕÖ¹ÈÕÆÚ£¬µ±³ÉÁ¢Ê±·µ»ØÖµÎª0
+int check_date(int by, int bm, int bd, int ey, int em, int ed)              //æ£€æŸ¥èµ·å§‹æ—¥æœŸæ˜¯å¦å°äºç»ˆæ­¢æ—¥æœŸï¼Œå½“æˆç«‹æ—¶è¿”å›å€¼ä¸º0
 {
 	int i;
 	if (by < ey)
@@ -111,12 +111,12 @@ int check_date(int by, int bm, int bd, int ey, int em, int ed)              //¼ì
 	return i;
 }
 
-int calculate(int by, int bm, int bd, int ey, int em, int ed)                  //¼ÆËãÏà¸ôÌìÊı
+int calculate(int by, int bm, int bd, int ey, int em, int ed)                  //è®¡ç®—ç›¸éš”å¤©æ•°
 {
 	int days, i, j, k;
 	days = 0;
 
-	for (i = by; i < ey; i++)                                                 //ÒÔÄêÎªµ¥Î»¼ÆËãÌìÊı£¨×ó±ÕÓÒ¿ª£©
+	for (i = by; i < ey; i++)                                                 //ä»¥å¹´ä¸ºå•ä½è®¡ç®—å¤©æ•°ï¼ˆå·¦é—­å³å¼€ï¼‰
 	{
 		if (leap_year(i))
 			days += 366;
@@ -124,13 +124,13 @@ int calculate(int by, int bm, int bd, int ey, int em, int ed)                  /
 			days += 365;
 	}
 
-	for (j = 1; j < bm; j++)                                                 //¼õÈ¥ÆğÊ¼ÄêÎ´¿ªÊ¼µÄÌìÊı
+	for (j = 1; j < bm; j++)                                                 //å‡å»èµ·å§‹å¹´æœªå¼€å§‹çš„å¤©æ•°
 	{
 		days -= day_in_month(by, j);
 	}
 	days -= bd;
 
-	for (k = 1; k < em; k++)                                                 //¼ÓÉÏÖÕÖ¹ÄêÎ´½áÊøµÄÌìÊı
+	for (k = 1; k < em; k++)                                                 //åŠ ä¸Šç»ˆæ­¢å¹´æœªç»“æŸçš„å¤©æ•°
 	{
 		days += day_in_month(ey, k);
 	}
